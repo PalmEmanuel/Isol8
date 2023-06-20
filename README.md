@@ -1,2 +1,13 @@
 # Isol8
-A PowerShell module to handle AssemblyLoadContext management for module authoring.
+
+ALC
+
+## Make it yours
+
+---
+Generated with Plaster and the SampleModule template
+
+
+This is a sample Readme
+
+## Make it yours

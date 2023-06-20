@@ -1,0 +1,12 @@
+C:\Code\Isol8\Source\Assets\obj\Debug\net6.0\Isol8.csproj.AssemblyReference.cache
+C:\Code\Isol8\Source\Assets\obj\Debug\net6.0\Isol8.GeneratedMSBuildEditorConfig.editorconfig
+C:\Code\Isol8\Source\Assets\obj\Debug\net6.0\Isol8.AssemblyInfoInputs.cache
+C:\Code\Isol8\Source\Assets\obj\Debug\net6.0\Isol8.AssemblyInfo.cs
+C:\Code\Isol8\Source\Assets\obj\Debug\net6.0\Isol8.csproj.CoreCompileInputs.cache
+C:\Code\Isol8\Source\Assets\bin\Debug\net6.0\Isol8.deps.json
+C:\Code\Isol8\Source\Assets\bin\Debug\net6.0\Isol8.dll
+C:\Code\Isol8\Source\Assets\bin\Debug\net6.0\Isol8.pdb
+C:\Code\Isol8\Source\Assets\obj\Debug\net6.0\Isol8.dll
+C:\Code\Isol8\Source\Assets\obj\Debug\net6.0\refint\Isol8.dll
+C:\Code\Isol8\Source\Assets\obj\Debug\net6.0\Isol8.pdb
+C:\Code\Isol8\Source\Assets\obj\Debug\net6.0\ref\Isol8.dll
