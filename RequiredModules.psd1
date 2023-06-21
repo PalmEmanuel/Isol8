@@ -15,6 +15,5 @@
     Sampler               = 'latest'
     'Sampler.GitHubTasks' = 'latest'
     Metadata              = 'latest'
-    PlatyPS               = 'latest'
 }
 

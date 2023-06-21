@@ -64,8 +64,6 @@ Describe Get-Something {
             (Get-Command Get-Something).Parameters.ContainsKey('WhatIf') | Should -Be $true
             { Get-Something -Data 'value' -WhatIf } | Should -Not -Throw
         }
-
-
     }
 }
 

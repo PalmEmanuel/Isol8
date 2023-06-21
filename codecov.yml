@@ -28,4 +28,3 @@ coverage:
 # example a deprecated function where tests has been removed.
 #ignore:
 #  - 'source/Public/Get-Deprecated.ps1'
-
