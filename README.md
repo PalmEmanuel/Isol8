@@ -9,7 +9,12 @@ A PowerShell module to handle AssemblyLoadContext management for module authorin
 Install-Module Isol8
 
 # Create a new .dll file for your module, and update the NestedModules in the manifest
-New-Isol8Assembly -Name 'MyModule' -ManifestPath "$Dir/MyModule.psd1" -Path "$Dir/dependencies"
+$Params = @{
+    Name = 'MyModule'
+    ManifestPath = "$Dir/MyModule.psd1"
+    Path = "$Dir/dependencies"
+}
+New-Isol8Assembly @Params
 ```
 
 <!-- References -->
