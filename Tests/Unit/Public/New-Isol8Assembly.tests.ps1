@@ -30,5 +30,29 @@ Describe New-Isol8Assembly {
             (Get-Command New-Isol8Assembly).Parameters.ContainsKey('WhatIf') | Should -Be $true
         }
     }
+
+    Context 'Base functionallity' {
+        BeforeAll {
+            # Set up mock manifest
+            New-Item -Path "TestDrive:/Module" -ItemType Directory -Force
+            New-ModuleManifest -Path "TestDrive:/Module/UnitTest.psd1" -RootModule "" -NestedModules 'one'
+        }
+
+        It 'Creates an assembly' {
+            New-Isol8Assembly -Name 'UnitTest' -Path "TestDrive:/Module/Dependencies/UnitTest.dll"
+            Test-Path "TestDrive:/Module/Dependencies/UnitTest.dll" | Should -Be $true
+        }
+
+        It 'Creates an assembly if one allready exists' {
+            New-Isol8Assembly -Name 'UnitTest' -Path "TestDrive:/Module/Dependencies/UnitTest.dll"
+            {Test-Path "TestDrive:/Module/Dependencies/UnitTest.dll"} | Should -Not -Throw
+        }
+
+        It 'Updates a manifest' {
+            New-Isol8Assembly -Name 'UnitTest' -Path "TestDrive:/Module/Dependencies/UnitTest.dll" -ManifestPath "TestDrive:/Module/UnitTest.psd1"
+            Test-Path "TestDrive:/Module/UnitTest.psd1" | Should -Be $true
+            (Import-PowerShellDataFile -Path "TestDrive:/Module/UnitTest.psd1").NestedModules | Should -Be @('./Dependencies/UnitTest.dll', 'one')
+        }
+    }
 }
 

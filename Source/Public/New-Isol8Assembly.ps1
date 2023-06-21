@@ -52,12 +52,14 @@ function New-Isol8Assembly {
     }
 
     process {
-        $ResolverSourceCode = Get-Content "$PSScriptRoot/ModuleIsolation.cs" -Raw
-        Add-Type -Language CSharp -TypeDefinition ($ResolverSourceCode + @"
+        if ($PSCmdlet.ShouldProcess($Path, 'Create Isol8 assembly')) {
+            $ResolverSourceCode = Get-Content "$PSScriptRoot/ModuleIsolation.cs" -Raw
+            Add-Type -Language CSharp -TypeDefinition ($ResolverSourceCode + @"
 public class ${Name}ModuleInitializer : ModuleInitializer {
     public ${Name}ModuleInitializer() : base("$Name") {}
 }
 "@) -OutputAssembly $Path
+        }
 
         if ($PSBoundParameters.ContainsKey('ManifestPath')) {
             try {
