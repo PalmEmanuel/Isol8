@@ -86,13 +86,13 @@ PrivateData = @{
 
     PSData = @{
         # Tags applied to this module. These help with module discovery in online galleries.
-        # Tags = @()
+        Tags = @('Module', 'Development', 'Assembly', 'ALC', 'AssemblyLoadContext', 'PowerShell', 'C#')
 
         # A URL to the license for this module.
-        # LicenseUri = ''
+        LicenseUri = 'https://github.com/PalmEmanuel/Isol8/blob/main/LICENSE'
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+        ProjectUri = 'https://github.com/PalmEmanuel/Isol8'
 
         # A URL to an icon representing this module.
         # IconUri = ''
