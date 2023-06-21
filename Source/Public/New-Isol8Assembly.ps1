@@ -1,4 +1,5 @@
-<#
+function New-Isol8Assembly {
+    <#
 .SYNOPSIS
     Create a new assembly file with functionality to isolate your module dependencies.
 .DESCRIPTION
@@ -8,7 +9,6 @@
 
     Creates a new assembly file for MyModule in "$Dir/dependencies", and update the NestedModules in the manifest.
 #>
-function New-Isol8Assembly {
     [CmdletBinding(SupportsShouldProcess)]
     param (
         # The name of the module to isolate dependencies for.
