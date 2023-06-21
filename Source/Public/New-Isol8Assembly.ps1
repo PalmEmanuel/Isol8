@@ -60,7 +60,12 @@ public class ${Name}ModuleInitializer : ModuleInitializer {
 "@) -OutputAssembly $Path
 
         if ($PSBoundParameters.ContainsKey('ManifestPath')) {
-            $CurrentNestedModules = Get-Metadata -Path $ManifestPath -PropertyName NestedModules
+            try {
+                $CurrentNestedModules = Get-Metadata -Path $ManifestPath -PropertyName NestedModules
+            }
+            catch {
+                $CurrentNestedModules = @()
+            }
             Write-Verbose "Updating NestedModules in $ManifestPath."
 
             if ($PSCmdlet.ShouldProcess($ManifestPath)) {

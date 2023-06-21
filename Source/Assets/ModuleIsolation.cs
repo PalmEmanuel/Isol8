@@ -24,10 +24,9 @@ public abstract class ModuleInitializer : IModuleAssemblyInitializer, IModuleAss
     private static readonly string dependencyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
     // Resolve assembly by name if it's the Isol8 dll being loaded by the default ALC
-    // We know it's the default ALC because of line 16 above
-    public static Assembly ResolveAssembly(AssemblyLoadContext defaultAlc, AssemblyName assemblyName) {
-        return alc.LoadFromAssemblyName(assemblyName);
-    }
+    // We know it's the default ALC because of OnImport above
+    public static Assembly ResolveAssembly(AssemblyLoadContext defaultAlc, AssemblyName assemblyName) =>
+        alc.LoadFromAssemblyName(assemblyName);
 }
 
 // We create our own ALC by inheriting from AssemblyLoadContext and overriding the Load() method
