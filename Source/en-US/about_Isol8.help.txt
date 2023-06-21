@@ -2,23 +2,19 @@ TOPIC
     about_Isol8
 
 SHORT DESCRIPTION
-    ALC
+    A PowerShell module to handle AssemblyLoadContext management for module authoring.
 
 LONG DESCRIPTION
-    ALC
+    A PowerShell module to handle AssemblyLoadContext management for module authoring.
 
 EXAMPLES
-    PS C:\> {{ add examples here }}
-
-NOTE:
-    Thank you to all those who contributed to this module, by writing code, sharing opinions, and provided feedback.
+    PS C:\> New-Isol8Assembly -Name 'MyModule' -ManifestPath "$Dir/MyModule.psd1" -Path "$Dir/dependencies"
 
 TROUBLESHOOTING NOTE:
-    Look out on the Github repository for issues and new releases.
+    Look at the GitHub repository for issues and new releases, or submit an issue of your own.
 
 SEE ALSO
-    - {{ Please add Project URI such as github }}}
+    - https://github.com/PalmEmanuel/Isol8
 
 KEYWORDS
-    {{ Add comma separated keywords here }}
-
+    Module, Development, Assembly, ALC, AssemblyLoadContext, PowerShell
