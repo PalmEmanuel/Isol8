@@ -1,13 +1,17 @@
 # Isol8
 
-ALC
+[![Isol8Downloads]][Isol8Gallery]
 
-## Make it yours
+A PowerShell module to handle AssemblyLoadContext management for module authoring.
 
----
-Generated with Plaster and the SampleModule template
+```PowerShell
+# Install the module from PSGallery
+Install-Module Isol8
 
+# Create a new .dll file for your module, and update the NestedModules in the manifest
+New-Isol8Assembly -Name 'MyModule' -ManifestPath "$Dir/MyModule.psd1" -Path "$Dir/dependencies"
+```
 
-This is a sample Readme
-
-## Make it yours
+<!-- References -->
+[Isol8Downloads]: https://img.shields.io/powershellgallery/dt/Isol8
+[Isol8Gallery]: https://www.powershellgallery.com/packages/Isol8/
