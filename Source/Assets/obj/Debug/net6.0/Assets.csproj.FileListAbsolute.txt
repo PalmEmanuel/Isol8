@@ -1,5 +1,0 @@
-C:\Code\Isol8\Source\Assets\obj\Debug\net6.0\Assets.csproj.AssemblyReference.cache
-C:\Code\Isol8\Source\Assets\obj\Debug\net6.0\Assets.GeneratedMSBuildEditorConfig.editorconfig
-C:\Code\Isol8\Source\Assets\obj\Debug\net6.0\Assets.AssemblyInfoInputs.cache
-C:\Code\Isol8\Source\Assets\obj\Debug\net6.0\Assets.AssemblyInfo.cs
-C:\Code\Isol8\Source\Assets\obj\Debug\net6.0\Assets.csproj.CoreCompileInputs.cache

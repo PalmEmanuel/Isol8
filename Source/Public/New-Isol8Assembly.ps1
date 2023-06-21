@@ -15,19 +15,26 @@ function New-Isol8Assembly {
             ValueFromPipelineByPropertyName)]
         [Alias('PSPath')]
         [ValidatePattern('\.dll$', ErrorMessage = 'Path must be a .dll file!')]
-        [string]$Path
+        [string]$Path,
+
+        [Parameter(
+            Position = 2,
+            ValueFromPipelineByPropertyName)]
+        [ValidatePattern('\.psd1$', ErrorMessage = 'Path must be a .psd1 file!')]
+        [string]$ManifestPath
     )
     
     begin {
         if (-not (Test-Path ($Parent = Split-Path $Path -Parent))) {
+            Write-Verbose "Directory of specified location did not exist, trying to create $Parent."
             $null = New-Item $Parent -ItemType Directory -Force
         }
         Get-Item $Path -ErrorAction SilentlyContinue | Remove-Item -Force
     }
     
     process {
-        $SourceCode = Get-Content "$PSScriptRoot/ModuleIsolation.cs" -Raw
-        Add-Type -Language CSharp -TypeDefinition ($SourceCode + @"
+        $ResolverSourceCode = Get-Content "$PSScriptRoot/ModuleIsolation.cs" -Raw
+        Add-Type -Language CSharp -TypeDefinition ($ResolverSourceCode + @"
 public class ${Name}ModuleInitializer : ModuleInitializer {
     public ${Name}ModuleInitializer() : base("$Name") {} 
 }
@@ -35,14 +42,14 @@ public class ${Name}ModuleInitializer : ModuleInitializer {
 
         if ($PSBoundParameters.ContainsKey('ManifestPath'))
         {
-            $OldValue = (Import-PowerShellDataFile $ManifestPath).NestedModules
+            $CurrentNestedModules = Get-Metadata -Path $ManifestPath -PropertyName NestedModules
+            Write-Verbose "Updating NestedModules in $ManifestPath."
 
             Push-Location (Split-Path $ManifestPath -Parent)
-            $NewValue = @(Resolve-Path $Path -Relative) + @($OldValue) | Get-Unique
-            $NewValue -join ', '
+            $NewValue = @(Resolve-Path $Path -Relative) + @($CurrentNestedModules) | Get-Unique
             Pop-Location
-
-            Update-ModuleManifest -Path $ManifestPath -NestedModules $NewValue
+            
+            Update-Metadata -Path $ManifestPath -PropertyName NestedModules -Value $NewValue
         }
     }
 }
