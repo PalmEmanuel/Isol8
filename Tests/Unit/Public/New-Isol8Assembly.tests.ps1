@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = '<% $PLASTER_PARAM_ModuleName %>'
+    $script:moduleName = 'Isol8'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -24,45 +24,10 @@ AfterAll {
     Remove-Module -Name $script:moduleName
 }
 
-Describe Get-Something {
-
-    Context 'Return values' {
-        BeforeEach {
-            $return = Get-Something -Data 'value'
-        }
-
-        It 'Returns a single object' {
-            ($return | Measure-Object).Count | Should -Be 1
-        }
-
-    }
-
-    Context 'Pipeline' {
-        It 'Accepts values from the pipeline by value' {
-            $return = 'value1', 'value2' | Get-Something
-
-            $return[0] | Should -Be 'value1'
-            $return[1] | Should -Be 'value2'
-        }
-
-        It 'Accepts value from the pipeline by property name' {
-            $return = 'value1', 'value2' | ForEach-Object {
-                [PSCustomObject]@{
-                    Data = $_
-                    OtherProperty = 'other'
-                }
-            } | Get-Something
-
-
-            $return[0] | Should -Be 'value1'
-            $return[1] | Should -Be 'value2'
-        }
-    }
-
+Describe New-Isol8Assembly {
     Context 'ShouldProcess' {
         It 'Supports WhatIf' {
-            (Get-Command Get-Something).Parameters.ContainsKey('WhatIf') | Should -Be $true
-            { Get-Something -Data 'value' -WhatIf } | Should -Not -Throw
+            (Get-Command New-Isol8Assembly).Parameters.ContainsKey('WhatIf') | Should -Be $true
         }
     }
 }

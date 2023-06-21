@@ -26,7 +26,6 @@ ignore:
   sha: []
 merge-message-formats: {}
 
-
 # feature:
 #   tag: useBranchName
 #   increment: Minor
