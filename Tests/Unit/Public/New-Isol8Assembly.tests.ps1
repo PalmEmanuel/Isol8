@@ -51,7 +51,7 @@ Describe New-Isol8Assembly {
         It 'Updates a manifest' {
             New-Isol8Assembly -Name 'UnitTest' -Path "TestDrive:/Module/Dependencies/UnitTest.dll" -ManifestPath "TestDrive:/Module/UnitTest.psd1"
             Test-Path "TestDrive:/Module/UnitTest.psd1" | Should -Be $true
-            (Import-PowerShellDataFile -Path "TestDrive:/Module/UnitTest.psd1").NestedModules | Should -Be @('./Dependencies/UnitTest.dll', 'one')
+            (Import-PowerShellDataFile -Path "TestDrive:/Module/UnitTest.psd1").NestedModules | Should -Match @('\.[\\|/]Dependencies[\\/]UnitTest\.dll', 'one')
         }
     }
 }

@@ -10,6 +10,7 @@ public abstract class ModuleInitializer : IModuleAssemblyInitializer, IModuleAss
     // Create a new custom ALC and provide the directory
     private static Isol8AssemblyLoadContext alc;
     public ModuleInitializer(string assemblyName) {
+        ModuleName = assemblyName;
         alc = new Isol8AssemblyLoadContext(dependencyDirectory, assemblyName);
     }
 
@@ -19,14 +20,18 @@ public abstract class ModuleInitializer : IModuleAssemblyInitializer, IModuleAss
     public void OnRemove(PSModuleInfo psModuleInfo) => AssemblyLoadContext.Default.Resolving -= ResolveAssembly;
 
     // Name of initializer assembly
-    public static string AssemblyName { get; set; }
+    public static string ModuleName { get; set; }
     // Get directory of this assembly, and use that directory to load dependencies from
     private static readonly string dependencyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
     // Resolve assembly by name if it's the Isol8 dll being loaded by the default ALC
     // We know it's the default ALC because of OnImport above
-    public static Assembly ResolveAssembly(AssemblyLoadContext defaultAlc, AssemblyName assemblyName) =>
-        alc.LoadFromAssemblyName(assemblyName);
+    public static Assembly ResolveAssembly(AssemblyLoadContext defaultAlc, AssemblyName assemblyName)
+    {
+        return assemblyName.Name == ModuleName ?
+            alc.LoadFromAssemblyName(assemblyName) :
+            null;
+    }
 }
 
 // We create our own ALC by inheriting from AssemblyLoadContext and overriding the Load() method

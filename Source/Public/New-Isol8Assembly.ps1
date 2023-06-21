@@ -41,7 +41,7 @@ function New-Isol8Assembly {
         if (-not (Test-Path ($Parent = Split-Path $Path -Parent))) {
             Write-Verbose "Directory of specified location did not exist, trying to create $Parent."
 
-            if ($PSCmdlet.ShouldProcess($Parent)) {
+            if ($PSCmdlet.ShouldProcess($Parent, "Create directory for assembly")) {
                 $null = New-Item $Parent -ItemType Directory -Force
             }
         }
@@ -70,7 +70,7 @@ public class ${Name}ModuleInitializer : ModuleInitializer {
             }
             Write-Verbose "Updating NestedModules in $ManifestPath."
 
-            if ($PSCmdlet.ShouldProcess($ManifestPath)) {
+            if ($PSCmdlet.ShouldProcess($ManifestPath, "Modify manifest with NestedModules")) {
                 Push-Location (Split-Path $ManifestPath -Parent)
                 $NewValue = @(Resolve-Path $Path -Relative) + @($CurrentNestedModules) | Get-Unique
                 Pop-Location
